@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git init)",
+      "Bash(git config user.name \"Hugo92-dev\")",
+      "Bash(git config user.email \"hugo92.dev@gmail.com\")",
+      "Bash(git branch -M main)",
+      "Bash(git remote add origin https://github.com/Hugo92-dev/PS.git)",
+      "Bash(git add .)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

@@ -1,0 +1,47 @@
+name: macOS Swift Package CI
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  build-and-test:
+    name: Build and Test PhotoSweeperCore
+    runs-on: macos-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup Xcode
+      uses: maxim-lobanov/setup-xcode@v1
+      with:
+        xcode-version: latest-stable
+
+    - name: Swift version
+      run: swift --version
+
+    - name: Build PhotoSweeperCore
+      working-directory: ./PhotoSweeperCore
+      run: swift build -v
+
+    - name: Run tests
+      working-directory: ./PhotoSweeperCore
+      run: swift test -v --enable-code-coverage
+
+    - name: Generate code coverage report
+      working-directory: ./PhotoSweeperCore
+      run: |
+        xcrun llvm-cov export -format="lcov" \
+          .build/debug/PhotoSweeperCorePackageTests.xctest/Contents/MacOS/PhotoSweeperCorePackageTests \
+          -instr-profile .build/debug/codecov/default.profdata > coverage.lcov || true
+
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v3
+      with:
+        files: ./PhotoSweeperCore/coverage.lcov
+        flags: unittests
+        name: PhotoSweeperCore
+        fail_ci_if_error: false
