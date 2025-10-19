@@ -1,9 +1,5 @@
 import Foundation
 
-#if canImport(Vision)
-import Vision
-#endif
-
 /// Clustering algorithm for grouping duplicates and similar images
 public struct Clustering {
     /// Group features into duplicate and similar clusters
@@ -137,26 +133,14 @@ public struct Clustering {
     }
 
     /// Compute distance between Vision feature prints
-    /// Note: Vision framework is only available at app layer (iOS runtime)
-    /// This method attempts to use Vision if available, otherwise returns fallback
+    /// Note: Vision framework computation must be done at app layer (iOS runtime)
+    /// This package-level method returns a neutral fallback distance
+    /// Real Vision distance should be computed via VisionService in the app layer
     private static func computeVisionDistance(_ fp1: Data, _ fp2: Data) -> Double {
-        #if canImport(Vision)
-        do {
-            let observation1 = try VNFeaturePrintObservation(data: fp1)
-            let observation2 = try VNFeaturePrintObservation(data: fp2)
-
-            var distance: Float = 0
-            try observation1.computeDistance(&distance, to: observation2)
-
-            return Double(distance)
-        } catch {
-            // If Vision fails, return fallback
-            return 0.5
-        }
-        #else
-        // Vision not available (e.g., in tests), return neutral distance
+        // Vision FeaturePrint distance computation requires VNFeaturePrintObservation
+        // which can only be created from actual Vision requests, not from raw Data
+        // Return neutral fallback - real computation happens at app layer
         return 0.5
-        #endif
     }
 
     /// Group burst photos by burstIdentifier or timestamp proximity

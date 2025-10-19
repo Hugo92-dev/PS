@@ -106,16 +106,23 @@ public struct HeuristicClassifier {
         }
 
         // Add burst label to existing results
-        for i in 0..<results.count {
-            if burstAssetIDs.contains(results[i].assetID) {
-                if !results[i].labels.contains(.burst) {
-                    results[i].labels.append(.burst)
-                    if !results[i].reason.isEmpty {
-                        results[i].reason += " • "
-                    }
-                    results[i].reason += "Partie d'une rafale"
-                }
+        results = results.map { result in
+            if burstAssetIDs.contains(result.assetID) && !result.labels.contains(.burst) {
+                var newLabels = result.labels
+                newLabels.append(.burst)
+                let separator = result.reason.isEmpty ? "" : " • "
+                let newReason = result.reason + separator + "Partie d'une rafale"
+
+                return HeuristicResult(
+                    id: result.id,
+                    assetID: result.assetID,
+                    labels: newLabels,
+                    confidence: result.confidence,
+                    reason: newReason,
+                    isSelected: result.isSelected
+                )
             }
+            return result
         }
 
         // Create new results for burst assets not already classified
@@ -128,37 +135,6 @@ public struct HeuristicClassifier {
                 reason: "Partie d'une rafale",
                 isSelected: true
             ))
-        }
-    }
-}
-
-// MARK: - Extension for mutable HeuristicResult
-extension HeuristicResult {
-    fileprivate var labels: [HeuristicLabel] {
-        get { self.labels }
-        set {
-            self = HeuristicResult(
-                id: self.id,
-                assetID: self.assetID,
-                labels: newValue,
-                confidence: self.confidence,
-                reason: self.reason,
-                isSelected: self.isSelected
-            )
-        }
-    }
-
-    fileprivate var reason: String {
-        get { self.reason }
-        set {
-            self = HeuristicResult(
-                id: self.id,
-                assetID: self.assetID,
-                labels: self.labels,
-                confidence: self.confidence,
-                reason: newValue,
-                isSelected: self.isSelected
-            )
         }
     }
 }
