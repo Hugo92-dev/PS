@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-PhotoSweeper Prototype (Python)
+Pixoo Prototype (Python)
 Validates detection algorithms on Windows before iOS compilation
 
 Usage:
@@ -380,7 +380,7 @@ def process_images(input_dir, output_csv):
 
 def main():
     parser = argparse.ArgumentParser(
-        description='PhotoSweeper Prototype - Validate detection algorithms on Windows'
+        description='Pixoo Prototype - Validate detection algorithms on Windows'
     )
     parser.add_argument('--input', '-i', required=True, help='Input directory with images')
     parser.add_argument('--output', '-o', default='results.csv', help='Output CSV file')

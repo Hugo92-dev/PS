@@ -1,6 +1,6 @@
-# Getting Started with PhotoSweeper MVP
+# Getting Started with Pixoo MVP
 
-Congratulations! All files for the PhotoSweeper MVP have been generated. Here's how to validate and run the project.
+Congratulations! All files for the Pixoo MVP have been generated. Here's how to validate and run the project.
 
 ## Prerequisites
 
@@ -36,7 +36,7 @@ python proto_sweeper.py --input "C:\Users\YourName\Pictures\TestPhotos" --output
 
 ## Step 2: Transfer to macOS
 
-Copy the entire `PhotoSweeper` folder to your Mac:
+Copy the entire `Pixoo` folder to your Mac:
 
 ```bash
 # Option 1: USB drive
@@ -46,23 +46,23 @@ Copy the entire `PhotoSweeper` folder to your Mac:
 # Upload folder → Download on Mac
 
 # Option 3: Git (recommended)
-cd C:\Users\hugo\PhotoSweeper
+cd C:\Users\hugo\Pixoo
 git init
 git add .
-git commit -m "Initial PhotoSweeper MVP"
-git remote add origin https://github.com/yourusername/PhotoSweeper.git
+git commit -m "Initial Pixoo MVP"
+git remote add origin https://github.com/yourusername/Pixoo.git
 git push -u origin main
 
 # On Mac:
-# git clone https://github.com/yourusername/PhotoSweeper.git
+# git clone https://github.com/yourusername/Pixoo.git
 ```
 
-## Step 3: Build PhotoSweeperCore Package (macOS)
+## Step 3: Build PixooCore Package (macOS)
 
 Open Terminal on Mac:
 
 ```bash
-cd PhotoSweeper/PhotoSweeperCore
+cd Pixoo/PixooCore
 swift build
 swift test
 ```
@@ -81,19 +81,19 @@ If tests fail, check error messages. Common issues:
 ## Step 4: Create Xcode Project (macOS)
 
 Follow detailed instructions in:
-- `PhotoSweeperApp/XCODE_SETUP.md`
+- `PixooApp/XCODE_SETUP.md`
 
 **Quick version**:
 
 1. Open Xcode
 2. File → New → Project → iOS App
-3. Product Name: **PhotoSweeperApp**
+3. Product Name: **PixooApp**
 4. Interface: **SwiftUI**
-5. Save to `PhotoSweeper/PhotoSweeperApp/`
+5. Save to `Pixoo/PixooApp/`
 6. Add local package dependency:
    - Project settings → General → Frameworks
-   - Add `../PhotoSweeperCore`
-7. Copy Swift files from `PhotoSweeperApp/PhotoSweeperApp/` into project
+   - Add `../PixooCore`
+7. Copy Swift files from `PixooApp/PixooApp/` into project
 8. Configure capabilities:
    - Photos library access
    - Background modes
@@ -142,7 +142,7 @@ Follow detailed instructions in:
 
 ### Xcode Issues
 
-**"Missing package product 'PhotoSweeperCore'"**
+**"Missing package product 'PixooCore'"**
 → File → Packages → Reset Package Caches
 
 **"Developer certificate not trusted"**
@@ -154,7 +154,7 @@ Follow detailed instructions in:
 ### Runtime Issues
 
 **"This app requires access to Photos"**
-→ Settings → PhotoSweeper → Photos → Full Access
+→ Settings → Pixoo → Photos → Full Access
 
 **"Background task not running"**
 → Background tasks are scheduled by iOS (not immediate)

@@ -1,6 +1,6 @@
-# PhotoSweeper
+# Pixoo
 
-**PhotoSweeper** est une app iOS qui analyse votre photothèque pour détecter les doublons, photos similaires et photos inutiles (floues, fond quasi-uni, noir/blanc, doigt probable, rafales), afin de libérer de l'espace de stockage.
+**Pixoo** est une app iOS qui analyse votre photothèque pour détecter les doublons, photos similaires et photos inutiles (floues, fond quasi-uni, noir/blanc, doigt probable, rafales), afin de libérer de l'espace de stockage.
 
 ## 🎯 Modèle économique
 
@@ -12,7 +12,7 @@
 
 ## 🏗️ Architecture
 
-### PhotoSweeperCore (Swift Package)
+### PixooCore (Swift Package)
 
 Package Swift indépendant contenant :
 
@@ -33,7 +33,7 @@ Package Swift indépendant contenant :
   - `Sweeper.estimatedSavings(for selection) -> ByteCount`
   - `Sweeper.Config` – seuils configurables
 
-### PhotoSweeperApp (iOS App)
+### PixooApp (iOS App)
 
 App iOS 17+ en SwiftUI :
 
@@ -86,7 +86,7 @@ App iOS 17+ en SwiftUI :
 
 **Étapes** :
 
-1. Ouvrir `PhotoSweeperApp/PhotoSweeperApp.xcodeproj` dans Xcode
+1. Ouvrir `PixooApp/PixooApp.xcodeproj` dans Xcode
 
 2. Configurer l'Apple ID :
    - Xcode → Settings → Accounts → Ajouter Apple ID
@@ -94,7 +94,7 @@ App iOS 17+ en SwiftUI :
 
 3. Build le Swift Package d'abord :
    ```bash
-   cd PhotoSweeperCore
+   cd PixooCore
    swift build
    swift test
    ```
@@ -107,7 +107,7 @@ App iOS 17+ en SwiftUI :
    - Réglages → Général → Gestion des appareils → [Votre Apple ID] → Faire confiance
 
 7. **StoreKit Testing** :
-   - Xcode utilise automatiquement `PhotoSweeperApp/StoreKit/PhotoSweeper.storekit`
+   - Xcode utilise automatiquement `PixooApp/StoreKit/Pixoo.storekit`
    - L'achat est simulé localement (pas de vraie transaction)
    - Pour tester : lancer le scan → cliquer "Supprimer" → paywall → acheter (gratuit en test)
 
@@ -139,14 +139,14 @@ App iOS 17+ en SwiftUI :
 ## ⚙️ CI/CD
 
 `.github/workflows/macos-swift.yml` :
-- Build & tests du package `PhotoSweeperCore` sur `macos-latest`
+- Build & tests du package `PixooCore` sur `macos-latest`
 - **But** : éviter les régressions de compilation même sans Mac local
 - **Note** : l'app iOS n'est pas buildée en CI (nécessite certificat/profil)
 
 ## 🛠️ Configuration StoreKit
 
-- Fichier : `PhotoSweeperApp/StoreKit/PhotoSweeper.storekit`
-- Produit : "PhotoSweeper Pro" (non-consumable, 12,99 €)
+- Fichier : `PixooApp/StoreKit/Pixoo.storekit`
+- Produit : "Pixoo Pro" (non-consumable, 12,99 €)
 - **Family Sharing désactivé** : décision business pour achat à vie individuel
 - **Receipt validation** : stub local commenté (à implémenter pour production avec serveur)
 
@@ -159,7 +159,7 @@ App iOS 17+ en SwiftUI :
 ## ✅ Check-list QA manuelle
 
 ### Core
-- [ ] PhotoSweeperCore compile sans erreur
+- [ ] PixooCore compile sans erreur
 - [ ] Tests unitaires passent (`swift test`)
 - [ ] pHash génère hash 64-bit cohérent pour images identiques
 - [ ] Laplacien détecte images floues

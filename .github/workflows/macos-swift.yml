@@ -8,7 +8,7 @@ on:
 
 jobs:
   build-and-test:
-    name: Build and Test PhotoSweeperCore
+    name: Build and Test PixooCore
     runs-on: macos-latest
 
     steps:
@@ -23,25 +23,25 @@ jobs:
     - name: Swift version
       run: swift --version
 
-    - name: Build PhotoSweeperCore
-      working-directory: ./PhotoSweeperCore
+    - name: Build PixooCore
+      working-directory: ./PixooCore
       run: swift build -v
 
     - name: Run tests
-      working-directory: ./PhotoSweeperCore
+      working-directory: ./PixooCore
       run: swift test -v --enable-code-coverage
 
     - name: Generate code coverage report
-      working-directory: ./PhotoSweeperCore
+      working-directory: ./PixooCore
       run: |
         xcrun llvm-cov export -format="lcov" \
-          .build/debug/PhotoSweeperCorePackageTests.xctest/Contents/MacOS/PhotoSweeperCorePackageTests \
+          .build/debug/PixooCorePackageTests.xctest/Contents/MacOS/PixooCorePackageTests \
           -instr-profile .build/debug/codecov/default.profdata > coverage.lcov || true
 
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v3
       with:
-        files: ./PhotoSweeperCore/coverage.lcov
+        files: ./PixooCore/coverage.lcov
         flags: unittests
-        name: PhotoSweeperCore
+        name: PixooCore
         fail_ci_if_error: false

@@ -1,11 +1,11 @@
-# PhotoSweeper - Complete Project Structure
+# Pixoo - Complete Project Structure
 
 This document lists all generated files for the MVP.
 
 ## Repository Root
 
 ```
-PhotoSweeper/
+Pixoo/
 ├── README.md                                  # Project documentation
 ├── LICENSE                                     # MIT License
 ├── .gitignore                                  # Git ignore rules
@@ -13,13 +13,13 @@ PhotoSweeper/
 │
 ├── .github/
 │   └── workflows/
-│       └── macos-swift.yml                     # CI: Build & test PhotoSweeperCore
+│       └── macos-swift.yml                     # CI: Build & test PixooCore
 │
-├── PhotoSweeperCore/                           # Swift Package (algorithms & models)
+├── PixooCore/                           # Swift Package (algorithms & models)
 │   ├── Package.swift                           # Package manifest
 │   ├── Sources/
-│   │   └── PhotoSweeperCore/
-│   │       ├── PhotoSweeperCore.swift          # Module exports
+│   │   └── PixooCore/
+│   │       ├── PixooCore.swift          # Module exports
 │   │       ├── Sweeper.swift                   # Main public API
 │   │       ├── Models/
 │   │       │   ├── Asset.swift                 # Photo/video asset model
@@ -39,17 +39,17 @@ PhotoSweeper/
 │   │       └── Persistence/
 │   │           └── Storage.swift               # JSON-based persistence
 │   └── Tests/
-│       └── PhotoSweeperCoreTests/
+│       └── PixooCoreTests/
 │           ├── PHashTests.swift                # pHash unit tests
 │           ├── LaplacianVarianceTests.swift    # Laplacian tests
 │           ├── EntropyTests.swift              # Entropy tests
 │           ├── ClusteringTests.swift           # Clustering tests
 │           └── SweeperTests.swift              # API & config tests
 │
-├── PhotoSweeperApp/                            # iOS App (SwiftUI)
+├── PixooApp/                            # iOS App (SwiftUI)
 │   ├── XCODE_SETUP.md                          # How to create Xcode project
-│   ├── PhotoSweeperApp/
-│   │   ├── PhotoSweeperApp.swift               # App entry point
+│   ├── PixooApp/
+│   │   ├── PixooApp.swift               # App entry point
 │   │   ├── Info.plist                          # App configuration
 │   │   ├── Models/
 │   │   │   ├── AppState.swift                  # Global app state
@@ -96,8 +96,8 @@ PhotoSweeper/
 
 ## Lines of Code (Estimated)
 
-- **PhotoSweeperCore**: ~2,500 lines
-- **PhotoSweeperApp**: ~1,800 lines
+- **PixooCore**: ~2,500 lines
+- **PixooApp**: ~1,800 lines
 - **Tests**: ~600 lines
 - **Python prototype**: ~400 lines
 - **Total**: ~5,300 lines
@@ -105,19 +105,19 @@ PhotoSweeper/
 ## Next Steps (on macOS)
 
 1. Open Terminal and navigate to project directory
-2. Build PhotoSweeperCore package:
+2. Build PixooCore package:
    ```bash
-   cd PhotoSweeperCore
+   cd PixooCore
    swift build
    swift test
    ```
-3. Create Xcode project (follow `PhotoSweeperApp/XCODE_SETUP.md`)
+3. Create Xcode project (follow `PixooApp/XCODE_SETUP.md`)
 4. Run on physical iPhone (iOS 17+)
 5. Test full flow: Onboarding → Scan → Results → Paywall → Deletion
 
 ## Validation Checklist
 
-### PhotoSweeperCore (Package)
+### PixooCore (Package)
 - [ ] Package compiles without errors
 - [ ] All unit tests pass
 - [ ] pHash generates consistent hashes
@@ -126,7 +126,7 @@ PhotoSweeper/
 - [ ] Clustering groups duplicates (Hamming ≤8)
 - [ ] Config thresholds are documented
 
-### PhotoSweeperApp (iOS App)
+### PixooApp (iOS App)
 - [ ] Onboarding flow complete
 - [ ] Photo authorization works
 - [ ] Scan starts and shows progress
