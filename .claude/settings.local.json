@@ -23,7 +23,12 @@
       "Bash(find PixooApp PixooCore -type f ( -name \"*.swift\" -o -name \"*.plist\" -o -name \"*.md\" ) -exec sed -i 's/com\\.photosweeper\\.app/com.pixoo.app/g' {} +)",
       "Bash(find PixooApp PixooCore -type f -name \"*.swift\" -exec sed -i 's/PhotoSweeper Pro/Pixoo Pro/g' {} +)",
       "Bash(git pull --rebase)",
-      "Bash(git add -A)"
+      "Bash(git add -A)",
+      "Bash(git commit -m \"Rename app to Pixoo: bundle IDs, IAP, BGTask, storekit, modules, docs\n\n- PhotoSweeperApp → PixooApp\n- PhotoSweeperCore → PixooCore\n- Bundle ID: com.photosweeper.app → com.pixoo.app\n- IAP Product: com.pixoo.app.pro.lifetime\n- BGTask: com.pixoo.app.scan\n- Pixoo Pro - À vie (12,99 €)\n- All imports, docs, UI text updated\")",
+      "Bash(git push origin main)",
+      "Bash(gh run list --repo Hugo92-dev/PS --limit 5)",
+      "WebFetch(domain:github.com)",
+      "Bash(git commit -m \"Fix CI: remove circular typealiases, fix Vision import, fix SweeperConfig\n\n- Remove PixooCore.swift typealiases causing circular redeclarations\n- Move Vision import to file level in Clustering.swift\n- Fix SweeperConfig.aggressive parameters to match private init signature\n- All types now exported directly from their files\")"
     ],
     "deny": [],
     "ask": []

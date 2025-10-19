@@ -1,5 +1,9 @@
 import Foundation
 
+#if canImport(Vision)
+import Vision
+#endif
+
 /// Clustering algorithm for grouping duplicates and similar images
 public struct Clustering {
     /// Group features into duplicate and similar clusters
@@ -137,8 +141,6 @@ public struct Clustering {
     /// This method attempts to use Vision if available, otherwise returns fallback
     private static func computeVisionDistance(_ fp1: Data, _ fp2: Data) -> Double {
         #if canImport(Vision)
-        import Vision
-
         do {
             let observation1 = try VNFeaturePrintObservation(data: fp1)
             let observation2 = try VNFeaturePrintObservation(data: fp2)

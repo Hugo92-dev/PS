@@ -70,9 +70,7 @@ public struct SweeperConfig: Codable {
     /// Aggressive config (more detections)
     public static let aggressive = SweeperConfig(
         duplicateHammingThreshold: 10,
-        similarHammingMax: 20,
         duplicateVisionThreshold: 0.08,
-        similarVisionThreshold: 0.2,
         blurThreshold: 50.0,
         flatEntropyThreshold: 3.5
     )
